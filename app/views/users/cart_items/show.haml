@@ -1,0 +1,5 @@
+%h2 商品詳細画面
+%p= image_tag @cart_item.product.image_url if @cart_item.product.image.present?
+%p= @cart_item.product.name
+%p  #{@cart_item.product.price}円
+%p= @cart_item.product.content

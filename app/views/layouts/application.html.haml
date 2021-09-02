@@ -18,6 +18,8 @@
       = link_to 'ログアウト(管理者)', destroy_admin_session_path, method: :delete
 
     - if user_signed_in?
+      = link_to '商品一覧', users_products_path
+      = link_to 'カート', users_cart_items_path
       = link_to 'ログアウト(ユーザー)', destroy_user_session_path, method: :delete
     %p= notice
     %p= alert

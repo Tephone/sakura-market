@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :products
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :users do
+    resources :products, only: %i[index show]
+    resources :cart_items, only: %i[index show new create destroy]
+  end
 end

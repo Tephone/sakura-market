@@ -1,0 +1,6 @@
+%h2 カートに追加する
+%p 個数を選択してださい
+= form_with(model: @cart_item, url: users_cart_items_path) do |f|
+  %p= f.hidden_field :product_id
+  %p= f.number_field :amount, min: 1, value: 1
+  = f.submit 'カートに追加'

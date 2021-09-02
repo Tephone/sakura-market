@@ -26,6 +26,6 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_uin_path_for(resource)
-    top_path
+    users_products_path
   end
 end
