@@ -26,6 +26,6 @@ class Admins::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    top_path
+    admins_products_path
   end
 end

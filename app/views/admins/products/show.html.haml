@@ -1,0 +1,6 @@
+%h1 商品詳細画面
+%p= image_tag @product.image_url if @product.image.present?
+%p= @product.name
+%p  #{@product.price}円
+%p= @product.content
+= link_to '編集', edit_admins_product_path
