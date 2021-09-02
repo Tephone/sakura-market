@@ -9,4 +9,10 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    - if !admin_signed_in? && !admin_signed_in?
+      = link_to 'ログイン(管理者)', new_admin_session_path
+      = link_to 'ログイン(ユーザー)', new_user_session_path
+
+    - if admin_signed_in?
+      = link_to 'ログアウト(管理者)', destroy_admin_session_path, method: :delete
     = yield
