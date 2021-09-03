@@ -1,8 +1,10 @@
 %h2 カート追加済み商品一覧
 - @cart_items.each do |cart_item|
-  %p
-    = cart_item.product.name
-    #{cart_item.amount}個
-    = link_to '詳細', users_cart_item_path(cart_item)
-    = link_to '削除', users_cart_item_path(cart_item), method: :delete
+  - if !cart_item.order_product.present?
+    %p
+      = cart_item.product.name
+      #{cart_item.amount}個
+      = link_to '詳細', users_cart_item_path(cart_item)
+      = link_to '削除', users_cart_item_path(cart_item), method: :delete
+= link_to 'カート内のアイテムを購入する', new_users_order_path
 = paginate @cart_items
