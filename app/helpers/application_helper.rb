@@ -9,4 +9,17 @@ module ApplicationHelper
       ( 商品合計: #{cart_items_price}円, 送料: #{send_fee}円, 代引き手数料: #{cod_charge}円 + 消費税 )"
     end
   end
+
+  def max_delivery_date
+    start_date =  Date.current.since(3.days).to_date
+    end_date =  Date.current.since(14.days).to_date
+    dates = (start_date..end_date).to_a
+    extra = 0
+    dates.each do |date|
+      if date.wday == 0 || date.wday == 6
+        extra += 1
+      end
+    end
+    end_date.since(extra.days)
+  end
 end

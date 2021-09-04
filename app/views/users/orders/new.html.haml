@@ -1,7 +1,8 @@
 %h2 カートアイテム購入画面
 %p 配達日時を選択してくだい
+%p ※3営業日（営業日: 月-金）から14営業日までの間でご指定してくさいませ
 = form_with(model: @order, url: users_orders_path) do |f|
-  %p= f.date_field :delivery_date
+  %p= f.date_field :delivery_date, min: Date.current.since(3.days), max: max_delivery_date
   %p= f.select :delivery_time_id, delivery_times_option
   %p= f.hidden_field :send_fee
   %p= f.hidden_field :cod_charge

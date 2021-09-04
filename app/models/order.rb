@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_products, dependent: :destroy
   validates :delivery_date, presence: true
+  validate :invalid_holiday
   
   scope :delivery_date_desc, -> {order('delivery_date DESC')}
   
@@ -33,6 +34,12 @@ class Order < ApplicationRecord
       600
     elsif cart_items_price >= 100000
       1000
+    end
+  end
+
+  def invalid_holiday
+    if self.delivery_date.wday == 0 || self.delivery_date.wday == 6
+      errors.add(:delivery_date, 'は平日(月〜金)を指定してください')
     end
   end
 end
