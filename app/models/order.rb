@@ -4,6 +4,8 @@ class Order < ApplicationRecord
   has_many :order_products, dependent: :destroy
   validates :delivery_date, presence: true
   
+  scope :delivery_date_desc, -> {order('delivery_date DESC')}
+  
   class << self
     def cart_items_price
       cart_items_price = 0

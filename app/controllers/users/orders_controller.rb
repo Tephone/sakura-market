@@ -1,4 +1,8 @@
 class Users::OrdersController < ApplicationController
+  def index
+    @orders = current_user.orders.delivery_date_desc
+  end
+
   def new
     @send_fee = Order.send_fee(current_user)
     @cod_charge = Order.new.cod_charge

@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   namespace :users do
     resources :products, only: %i[index show]
     resources :cart_items, only: %i[index show new create destroy]
-    resources :orders, only: %i[new create]
+    resources :orders, only: %i[index new create]
   end
 end
