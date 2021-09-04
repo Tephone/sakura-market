@@ -1,4 +1,4 @@
-class Users::CartItemsController < ApplicationController
+class Users::CartItemsController < Users::ApplicationController
   before_action :set_cart_item, only: %i[show destroy]
   
   def index

@@ -1,4 +1,4 @@
-class Users::ProductsController < ApplicationController
+class Users::ProductsController < Users::ApplicationController
   def index
     @products = Product.created_at_desc.page(params[:page])
   end

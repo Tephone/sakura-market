@@ -1,4 +1,4 @@
-class Users::OrdersController < ApplicationController
+class Users::OrdersController < Users::ApplicationController
   def index
     @orders = current_user.orders.delivery_date_desc
   end

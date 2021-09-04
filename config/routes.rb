@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'tops#show'
   resource :top, only: [:show]
   namespace :admins do
+    resources :users, only: %i[index show edit update destroy]
     resources :products
   end
   namespace :users do
