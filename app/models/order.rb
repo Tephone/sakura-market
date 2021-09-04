@@ -4,9 +4,9 @@ class Order < ApplicationRecord
   has_many :order_products, dependent: :destroy
   validates :delivery_date, presence: true
   validate :invalid_holiday
-  
-  scope :delivery_date_desc, -> {order('delivery_date DESC')}
-  
+
+  scope :delivery_date_desc, -> { order('delivery_date DESC') }
+
   class << self
     def cart_items_price
       cart_items_price = 0
@@ -19,15 +19,14 @@ class Order < ApplicationRecord
 
     def send_fee(user)
       cart_items_count = user.cart_items.un_ordered.count
-      send_fee = 600 * (cart_items_count.to_f / 5).ceil
-      send_fee
+      600 * (cart_items_count.to_f / 5).ceil
     end
   end
 
   def cod_charge
     cart_items_price = self.class.cart_items_price
     if cart_items_price >= 1 && cart_items_price < 10000
-      300 
+      300
     elsif cart_items_price >= 10000 && cart_items_price < 30000
       400
     elsif cart_items_price >= 30000 && cart_items_price < 100000

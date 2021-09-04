@@ -1,12 +1,12 @@
 class Users::CartItemsController < Users::ApplicationController
   before_action :set_cart_item, only: %i[show destroy]
-  
+
   def index
     @cart_items = current_user.cart_items.un_ordered.created_at_desc.page(params[:page])
   end
 
   def new
-    product = Product.find(params[:product_id]) 
+    product = Product.find(params[:product_id])
     @cart_item = current_user.cart_items.new(product_id: product.id)
   end
 
@@ -30,7 +30,7 @@ class Users::CartItemsController < Users::ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_item).permit %i(product_id amount)
+    params.require(:cart_item).permit %i[product_id amount]
   end
 
   def set_cart_item
