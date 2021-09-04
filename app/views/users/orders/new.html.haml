@@ -5,5 +5,5 @@
   %p= f.select :delivery_time_id, delivery_times_option
   %p= f.hidden_field :send_fee
   %p= f.hidden_field :cod_charge
-
+  %p= order_total_price(Order.cart_items_price, @send_fee, @cod_charge)
   = f.submit '購入する'

@@ -1,15 +1,20 @@
 class Users::OrdersController < ApplicationController
   def new
-    @order = current_user.orders.new(send_fee: 200, cod_charge: 500)
+    @send_fee = Order.send_fee(current_user)
+    @cod_charge = Order.new.cod_charge
+    @order = current_user.orders.new(send_fee: @send_fee, cod_charge: @cod_charge)
   end
 
   def create
     @order = current_user.orders.new(order_params)
-    if @order.save!
-        current_user.cart_items.un_ordered.each do |cart_item|
-        @order.order_products.create(cart_item_id: cart_item.id, price: cart_item.product.price * cart_item.amount)
+    if current_user.cart_items.un_ordered.present?
+      ApplicationRecord.transaction do
+        @order.save!
+        OrderProduct.create_after_order_create(current_user, @order)
+        redirect_to users_products_path, notice: 'カートアイテムを購入しました'
       end
-      redirect_to users_products_path, notice: 'カートアイテムを購入しました'
+    else
+      render :new
     end
   end
 
