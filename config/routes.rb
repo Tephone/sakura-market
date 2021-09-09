@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'diaries/index'
-  get 'diaries/show'
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   root 'tops#show'
@@ -16,6 +14,7 @@ Rails.application.routes.draw do
     resources :orders, only: %i[index new create]
     resources :diaries
     resources :likes, only: %i[create destroy]
+    resources :comments, only: %i[create destroy]
   end
   resources :diaries, only: %i[index show]
 end
