@@ -1,4 +1,4 @@
-%h2 日記一覧
+%h2 #{current_user.name}さんの日記一覧
 - @diaries.each do |diary|
   %p
     = l diary.date

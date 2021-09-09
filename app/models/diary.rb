@@ -1,6 +1,7 @@
 class Diary < ApplicationRecord
   mount_uploader :image, ImageUploader
   belongs_to :user
+  has_many :likes, dependent: :destroy
   validates :content, presence: true
   validates :date, presence: true,
                   uniqueness: { scope: :user_id }

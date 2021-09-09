@@ -1,0 +1,7 @@
+- current_user_like = current_user.likes.find{ |like| like.diary_id == diary.id} #N1問題解消のためrubyにて記述
+- if current_user_like
+  = button_to "good#{diary.likes.count}", users_like_path(current_user_like), method: :delete
+- else
+  = form_with(model: current_user.likes.new(diary_id: diary.id), url: users_likes_path) do |f|
+    = f.hidden_field :diary_id
+    = f.submit "good#{diary.likes.count}"

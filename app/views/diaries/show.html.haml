@@ -1,0 +1,4 @@
+%h2 日記詳細
+%p= l @diary.date
+%p= @diary.content
+%p= image_tag @diary.image.url if @diary.image.present?
