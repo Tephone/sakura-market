@@ -1,0 +1,8 @@
+%h2 日記一覧
+- @diaries.each do |diary|
+  %p
+    = l diary.date
+    = link_to '詳細', users_diary_path(diary)
+    = link_to '削除', users_diary_path(diary), method: :delete
+%p= link_to '日記作成', new_users_diary_path
+%p= paginate @diaries

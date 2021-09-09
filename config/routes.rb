@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     resources :products, only: %i[index show]
     resources :cart_items, only: %i[index show new create destroy]
     resources :orders, only: %i[index new create]
+    resources :diaries
   end
 end
