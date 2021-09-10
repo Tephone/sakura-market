@@ -24,4 +24,8 @@ module ApplicationHelper
     end
     end_date.since(extra.days)
   end
+
+  def separate_coupon(code)
+    code.scan(/.{4}/).join('-')
+  end
 end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :users, only: %i[index show edit update destroy]
     resources :products
+    resources :coupons, only: %i[index new create destroy]
   end
   namespace :users do
     resource :mypage, only: %i[show]
