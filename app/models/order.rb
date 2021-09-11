@@ -6,34 +6,16 @@ class Order < ApplicationRecord
   validate :invalid_holiday
   validate :should_be_after_3_to_14_weekdays
 
-  scope :delivery_date_desc, -> { order('delivery_date DESC') }
+  scope :delivery_date_desc, -> { order(delivery_date: :desc) }
 
   class << self
-    def cart_items_price
-      cart_items_price = 0
-      cart_items = CartItem.un_ordered
-      cart_items.each do |cart_item|
-        cart_items_price += (cart_item.product.price * cart_item.amount)
+    def save_order_and_create_order_product(user, order)
+      ApplicationRecord.transaction do
+        order.save!
+        user.cart_items.un_ordered.each do |cart_item|
+          order.order_products.create!(cart_item_id: cart_item.id, price: cart_item.product.price * cart_item.amount)
+        end
       end
-      cart_items_price
-    end
-
-    def send_fee(user)
-      cart_items_count = user.cart_items.un_ordered.count
-      600 * (cart_items_count.to_f / 5).ceil
-    end
-  end
-
-  def cod_charge
-    cart_items_price = self.class.cart_items_price
-    if cart_items_price >= 1 && cart_items_price < 10000
-      300
-    elsif cart_items_price >= 10000 && cart_items_price < 30000
-      400
-    elsif cart_items_price >= 30000 && cart_items_price < 100000
-      600
-    elsif cart_items_price >= 100000
-      1000
     end
   end
 
