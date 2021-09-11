@@ -12,9 +12,10 @@ class Order < ApplicationRecord
     def save_order_and_create_order_product(user, order)
       ApplicationRecord.transaction do
         order.save!
-        user.cart_items.un_ordered.each do |cart_item|
-          order.order_products.create!(cart_item_id: cart_item.id, price: cart_item.product.price * cart_item.amount)
+        user.cart_items.each do |cart_item|
+          order.order_products.create!(product_id: cart_item.product.id, amount: cart_item.amount, price: cart_item.product.price * cart_item.amount)
         end
+        user.cart_items.each(&:destroy!)
       end
     end
   end

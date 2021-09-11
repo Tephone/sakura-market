@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   def cart_items_price
     cart_items_price = 0
-    cart_items = self.cart_items.un_ordered
+    cart_items = self.cart_items
     cart_items.each do |cart_item|
       cart_items_price += (cart_item.product.price * cart_item.amount)
     end
@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def send_fee
-    cart_items_count = self.cart_items.un_ordered.count
+    cart_items_count = self.cart_items.count
     600 * (cart_items_count.to_f / 5).ceil
   end
 

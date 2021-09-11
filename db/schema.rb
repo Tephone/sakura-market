@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_060925) do
+ActiveRecord::Schema.define(version: 2021_09_11_130858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,11 +97,12 @@ ActiveRecord::Schema.define(version: 2021_09_11_060925) do
   create_table "order_products", force: :cascade do |t|
     t.integer "price", null: false
     t.bigint "order_id", null: false
-    t.bigint "cart_item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cart_item_id"], name: "index_order_products_on_cart_item_id"
+    t.bigint "product_id", null: false
+    t.integer "amount", null: false
     t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -151,8 +152,8 @@ ActiveRecord::Schema.define(version: 2021_09_11_060925) do
   add_foreign_key "get_coupons", "users"
   add_foreign_key "likes", "diaries"
   add_foreign_key "likes", "users"
-  add_foreign_key "order_products", "cart_items"
   add_foreign_key "order_products", "orders"
+  add_foreign_key "order_products", "products"
   add_foreign_key "orders", "delivery_times"
   add_foreign_key "orders", "users"
 end

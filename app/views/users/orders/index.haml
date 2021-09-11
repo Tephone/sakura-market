@@ -3,7 +3,7 @@
   - order.order_products.each do |order_product|
     %p
       = l order_product.order.delivery_date
-      = order_product.cart_item.product.name
-      #{order_product.cart_item.amount}個
-      #{order_product.cart_item.product.price * order_product.cart_item.amount}円
-      = link_to '詳細', users_product_path(order_product.cart_item.product)
+      = order_product.product.name
+      #{order_product.amount}個
+      = change_JPY(order_product.product.price * order_product.amount)
+      = link_to '商品詳細', users_product_path(order_product.product)
