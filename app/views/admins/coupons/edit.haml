@@ -1,0 +1,9 @@
+%h2 クーポン編集画面
+= form_with(model: @coupon, url: admins_coupon_path, method: :put) do |f|
+  %p
+    = f.label :code
+    (半角英数12文字)
+  %p= f.text_field :code
+  %p= f.label :point
+  %p= f.number_field :point
+  = f.submit

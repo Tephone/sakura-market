@@ -1,4 +1,6 @@
 class Admins::CouponsController < Admins::ApplicationController
+  before_action :set_coupon, only: %i[show edit update destroy]
+
   def index
     @coupons = Coupon.default_order.page(params[:page])
   end
@@ -16,8 +18,21 @@ class Admins::CouponsController < Admins::ApplicationController
     end
   end
 
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @coupon.update(coupon_params)
+      redirect_to admins_coupons_path, notice: 'クーポンを編集しました'
+    else
+      render :edit
+    end
+  end
+
   def destroy
-    @coupon = Coupon.find(params[:id])
     @coupon.destroy!
     redirect_to admins_coupons_path, notice: 'クーポンを削除しました'
   end
@@ -26,5 +41,9 @@ class Admins::CouponsController < Admins::ApplicationController
 
   def coupon_params
     params.require(:coupon).permit %i[code point]
+  end
+
+  def set_coupon
+    @coupon = Coupon.find(params[:id])
   end
 end

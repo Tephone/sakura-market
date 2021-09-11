@@ -29,4 +29,12 @@ module ApplicationHelper
   def change_JPY(num)
     number_to_currency(num, unit: '円')
   end
+
+  def get_coupon_rate(coupon)
+    if coupon.get_coupons.count.zero? || User.count.zero?
+      '利用者はいません'
+    else
+      "#{(coupon.get_coupons.count / User.count.to_f * 100).to_i}%"
+    end
+  end
 end

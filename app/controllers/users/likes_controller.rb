@@ -2,6 +2,7 @@ class Users::LikesController < Users::ApplicationController
   def create
     @like = current_user.likes.new(like_params)
     @like.save!
+    NoticeMailer.like_notice_to_user(@like).deliver_now
     redirect_to diaries_path, notice: 'goodしました'
   end
 
