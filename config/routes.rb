@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     resources :diaries
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create destroy]
+    resources :coupons, only: %i[index]
+    resource :my_coupon, only: [:show]
+    resources :get_coupons, only: [:create]
   end
   resources :diaries, only: %i[index show]
 end

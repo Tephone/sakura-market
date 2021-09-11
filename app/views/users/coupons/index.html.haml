@@ -1,0 +1,7 @@
+%h2 クーポン一覧
+- @coupons.each do |coupon|
+  %p
+    #{separate_coupon(coupon.code)}
+    #{coupon.point}P
+    = render 'users/get_coupons/get_coupon_form', coupon: coupon
+= paginate @coupons

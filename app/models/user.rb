@@ -9,5 +9,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :get_coupons, dependent: :destroy
+  has_many :coupons, through: :get_coupons, source: :coupon
   validates :name, presence: true
 end
