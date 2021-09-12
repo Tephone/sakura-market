@@ -7,8 +7,8 @@ class Users::LikesController < Users::ApplicationController
   end
 
   def destroy
-    @like = current_user.likes.find(params[:id])
-    @like.destroy!
+    like = current_user.likes.find(params[:id])
+    like.destroy!
     redirect_to diaries_path, notice: 'goodを取り消しました'
   end
 

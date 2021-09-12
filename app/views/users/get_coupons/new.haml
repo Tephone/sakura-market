@@ -1,0 +1,5 @@
+%h2 クーポン取得画面
+%p クーポンコードを入力してください
+= form_with(model: @coupon, url: users_get_coupons_path) do |f|
+  = f.text_field :coupon_code
+  = f.submit '入手'

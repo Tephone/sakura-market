@@ -11,9 +11,9 @@ class Users::CommentsController < Users::ApplicationController
   end
 
   def destroy
-    @comment = current_user.comments.find(params[:id])
-    @comment.destroy!
-    redirect_to diary_path(@comment.diary), notice:'コメントを削除しました'
+    comment = current_user.comments.find(params[:id])
+    comment.destroy!
+    redirect_to diary_path(comment.diary), notice:'コメントを削除しました'
   end
 
   private

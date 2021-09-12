@@ -3,5 +3,5 @@
   %p
     #{separate_coupon(coupon.code)}
     #{coupon.point}P
-    = render 'users/get_coupons/get_coupon_form', coupon: coupon
+%p= link_to 'クーポンを取得する', new_users_get_coupon_path
 = paginate @coupons

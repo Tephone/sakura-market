@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
     resources :coupons, only: %i[index]
     resource :my_coupon, only: [:show]
-    resources :get_coupons, only: [:create]
+    resources :get_coupons, only: %i[new create]
     resources :consume_coupons, only: [:index]
   end
   resources :diaries, only: %i[index show]

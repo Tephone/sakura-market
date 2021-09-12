@@ -1,13 +1,15 @@
-class Users::GetCouponsController < ApplicationController
-  def create
-    @get_coupon = current_user.get_coupons.new(get_coupon_params)
-    @get_coupon.save!
-    redirect_to users_my_coupon_path, notice: 'クーポンを取得しました'
+class Users::GetCouponsController < Users::ApplicationController
+  def new
+    @coupon = current_user.get_coupons.new
   end
 
-  private
-
-  def get_coupon_params
-    params.require(:get_coupon).permit(:coupon_id)
+  def create
+    @coupon = Coupon.find_by(code: params[:get_coupon][:coupon_code])
+    @get_coupon = current_user.get_coupons.new(coupon_id: @coupon.id)
+    if @get_coupon.save
+      redirect_to users_my_coupon_path, notice: 'クーポンを取得しました'
+    else
+      render :new
+    end
   end
 end
