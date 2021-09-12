@@ -5,7 +5,7 @@ class Diary < ApplicationRecord
   has_many :comments, dependent: :destroy
   validates :content, presence: true
   validates :date, presence: true,
-                  uniqueness: { scope: :user_id }
+                   uniqueness: { scope: :user_id }
 
   scope :date_order_desc, -> { order(date: :desc) }
 end

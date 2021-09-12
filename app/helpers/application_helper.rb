@@ -1,7 +1,8 @@
 module ApplicationHelper
   def delivery_times_option
     DeliveryTime.order(:id).map { |delivery_time|
-      ["#{delivery_time.start_time}時〜#{delivery_time.end_time}時", delivery_time.id]}
+      ["#{delivery_time.start_time}時〜#{delivery_time.end_time}時", delivery_time.id]
+    }
   end
 
   def order_total_price(cart_items_price, send_fee, cod_charge)

@@ -30,7 +30,7 @@ class Order < ApplicationRecord
 
   def should_be_after_3_to_14_weekdays
     dates = (Date.current.since(3.days).to_date..ApplicationController.helpers.max_delivery_date.to_date).to_a
-    if !dates.include?(self.delivery_date)
+    unless dates.include?(self.delivery_date)
       errors.add(:delivery_date, 'は3営業日（営業日: 月-金）から14営業日までの期間で選択してください')
     end
   end
