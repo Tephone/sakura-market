@@ -5,6 +5,8 @@ class Order < ApplicationRecord
   validates :delivery_date, presence: true
   validate :invalid_holiday
   validate :should_be_after_3_to_14_weekdays
+  validates :consume_point, presence: true,
+                            numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   scope :delivery_date_desc, -> { order(delivery_date: :desc) }
 

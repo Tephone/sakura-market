@@ -21,6 +21,6 @@ class Users::OrdersController < Users::ApplicationController
   private
 
   def order_params
-    params.require(:order).permit %i[delivery_date delivery_time_id]
+    params.require(:order).permit %i[delivery_date delivery_time_id consume_point]
   end
 end

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :coupons, only: %i[index]
     resource :my_coupon, only: [:show]
     resources :get_coupons, only: [:create]
+    resources :consume_coupons, only: [:index]
   end
   resources :diaries, only: %i[index show]
 end
