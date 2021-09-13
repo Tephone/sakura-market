@@ -39,4 +39,8 @@ class User < ApplicationRecord
       1000
     end
   end
+
+  def remaining_point
+    self.coupons.sum(:point) - self.orders.sum(:consume_point)
+  end
 end

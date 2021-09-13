@@ -6,7 +6,7 @@
   %p= f.select :delivery_time_id, delivery_times_option
   %p= order_total_price(current_user.cart_items_price, current_user.send_fee, current_user.cod_charge)
   %p --ポイントを利用する--
-  %p= f.number_field :consume_point, min: 0, max: remaining_point, value: 0
+  %p= f.number_field :consume_point, min: 0, value: 0
   %p ※入力したポイント分が合計金額から引かれます(1ポイント = 1円)
-  %p ※ポイント残数: #{remaining_point}
+  %p ※ポイント残数: #{current_user.remaining_point}
   = f.submit '購入する'

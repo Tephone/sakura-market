@@ -38,8 +38,4 @@ module ApplicationHelper
       "#{(coupon.get_coupons.count / User.count.to_f * 100).to_i}%"
     end
   end
-
-  def remaining_point
-    remaining_point = current_user.coupons.sum(:point) - current_user.orders.sum(:consume_point)
-  end
 end

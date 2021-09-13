@@ -7,3 +7,4 @@
       #{order_product.amount}個
       = change_JPY(order_product.product.price * order_product.amount)
       = link_to '商品詳細', users_product_path(order_product.product)
+= paginate @orders
