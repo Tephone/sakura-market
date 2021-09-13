@@ -3,6 +3,7 @@ ja:
     model:
       user: ユーザー
       product: 商品
+      coupon: クーポン
     attributes:
       user:
         name: 名前
@@ -13,3 +14,6 @@ ja:
         content: 商品説明
         image: 画像
         display: 表示する
+      coupon:
+        code: クーポンコード
+        point: ポイント数

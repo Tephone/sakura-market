@@ -1,0 +1,10 @@
+%h2 #{@user.name}さん
+%p= image_tag @user.image.url if @user.image.present?
+%p= @user.email
+%p= @user.nickname
+%p= @user.address
+%p= @user.remaining_point
+
+%p= link_to '編集', edit_user_registration_path
+%p= link_to '取得済みクーポン', users_my_coupon_path
+%p= link_to 'ポイント使用履歴', users_consume_coupons_path

@@ -16,12 +16,17 @@
     - if admin_signed_in?
       = link_to '商品一覧', admins_products_path
       = link_to 'ユーザー一覧', admins_users_path
+      = link_to 'クーポン一覧', admins_coupons_path
       = link_to 'ログアウト(管理者)', destroy_admin_session_path, method: :delete
 
     - if user_signed_in?
       = link_to '商品一覧', users_products_path
       = link_to 'カート', users_cart_items_path
       = link_to '購入履歴', users_orders_path
+      = link_to '日記一覧', diaries_path
+      = link_to '自分日記', users_diaries_path
+      = link_to 'クーポン一覧', users_coupons_path
+      = link_to 'マイページ', users_mypage_path
       = link_to 'ログアウト(ユーザー)', destroy_user_session_path, method: :delete
     %p= notice
     %p= alert

@@ -1,0 +1,6 @@
+%h2 日記編集画面
+= form_with(model: @diary, url: users_diary_path, method: :put) do |f|
+  %p= f.date_field :date
+  %p= f.text_area :content
+  %p= f.file_field :image
+  %p= f.submit

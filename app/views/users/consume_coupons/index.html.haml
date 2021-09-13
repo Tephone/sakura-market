@@ -1,0 +1,7 @@
+%h2 ポイント利用歴
+- @orders.each do |order|
+  - if !order.consume_point.zero?
+    %p
+      = l order.delivery_date
+      #{order.consume_point}P
+= paginate @orders

@@ -1,0 +1,7 @@
+%h2 クーポン一覧
+- @coupons.each do |coupon|
+  %p
+    #{separate_coupon(coupon.code)}
+    #{coupon.point}P
+%p= link_to 'クーポンを取得する', new_users_get_coupon_path
+= paginate @coupons

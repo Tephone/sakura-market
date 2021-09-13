@@ -1,0 +1,11 @@
+%h2 詳細画面
+%p
+  クーポンコード:
+  = separate_coupon(@coupon.code)
+%p
+  ポイント数:
+  #{@coupon.point}P
+%p
+  ユーザー利用率:
+  = get_coupon_rate(@coupon)
+%p= link_to '編集', edit_admins_coupon_path

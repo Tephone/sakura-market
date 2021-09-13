@@ -1,0 +1,8 @@
+%h2 日記一覧
+- @diaries.each do |diary|
+  %p #{diary.user.name}
+  %p
+    = l diary.date
+    = link_to '詳細', diary_path(diary)
+  %p= render 'users/likes/like_form', diary: diary
+%p= paginate @diaries

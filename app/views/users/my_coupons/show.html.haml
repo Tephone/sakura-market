@@ -1,0 +1,6 @@
+%h2 取得済みクーポン一覧
+- @coupons.each do |coupon|
+  %p
+    #{separate_coupon(coupon.code)}
+    #{coupon.point}P
+= paginate @coupons

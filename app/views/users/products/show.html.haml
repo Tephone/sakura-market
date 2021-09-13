@@ -1,6 +1,6 @@
 %h1 商品詳細画面
 %p= image_tag @product.image_url if @product.image.present?
 %p= @product.name
-%p  #{@product.price}円
+%p= change_JPY(@product.price)
 %p= @product.content
 = link_to 'カートに追加', new_users_cart_item_path(product_id: @product)

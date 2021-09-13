@@ -1,0 +1,11 @@
+%h2 日記詳細
+%p= l @diary.date
+%p= @diary.content
+%p= image_tag @diary.image.url if @diary.image.present?
+%p= render 'users/comments/comment_form', diary: @diary
+
+- @diary.comments.each do |comment|
+  %p
+    #{comment.user.name}:
+    = comment.content
+    = link_to '削除', users_comment_path(comment), method: :delete

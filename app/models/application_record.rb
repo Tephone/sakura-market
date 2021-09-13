@@ -1,4 +1,4 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
-  scope :created_at_desc, -> { order('created_at DESC') }
+  scope :default_order, -> { order(id: :desc) }
 end

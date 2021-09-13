@@ -1,6 +1,6 @@
 class Users::ProductsController < Users::ApplicationController
   def index
-    @products = Product.created_at_desc.page(params[:page])
+    @products = Product.default_order.page(params[:page])
   end
 
   def show
