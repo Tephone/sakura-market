@@ -1,6 +1,6 @@
 class Users::OrdersController < Users::ApplicationController
   def index
-    @orders = current_user.orders.delivery_date_desc
+    @orders = current_user.orders.delivery_date_desc.page(params[:page])
   end
 
   def new
