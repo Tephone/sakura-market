@@ -12,7 +12,7 @@ class Users::CartItemsController < Users::ApplicationController
 
   def create
     @cart_item = current_user.cart_items.new(cart_item_params)
-    if @cart_item.save
+    if @cart_item.save_and_update_product_stock
       redirect_to users_cart_items_path, notice: 'カートに追加しました'
     else
       render :new
@@ -23,7 +23,7 @@ class Users::CartItemsController < Users::ApplicationController
   end
 
   def destroy
-    @cart_item.destroy!
+    @cart_item.destroy_and_update_product_stock
     redirect_to users_cart_items_path, notice: 'カートから外しました'
   end
 

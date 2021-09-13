@@ -3,4 +3,6 @@
 %p= @product.name
 %p= change_JPY(@product.price)
 %p= @product.content
+%p= @product.seller.name
+%p 在庫: #{@product.stock}
 = link_to '編集', edit_sellers_product_path

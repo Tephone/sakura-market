@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       product: 商品
       coupon: クーポン
+      seller: 販売業者
     attributes:
       user:
         name: 名前
@@ -14,6 +15,10 @@ ja:
         content: 商品説明
         image: 画像
         display: 表示する
+        stock: 在庫
+        seller_id: 販売業者
       coupon:
         code: クーポンコード
         point: ポイント数
+      seller:
+        name: 名前

@@ -17,6 +17,10 @@
     %br
     = f.file_field :image
   %p
+    = f.label :stock
+    %br
+    = f.number_field :stock, min: 0
+  %p
     = f.label :display
     %br
     = f.check_box :display

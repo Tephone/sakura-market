@@ -8,4 +8,8 @@
     = f.label :price
     %br
     = f.text_field :price
+  %p
+    = f.label :seller_id
+    %br
+    = f.select :seller_id, sellers_option, include_blank: '--選択して下さい--'
   = f.submit

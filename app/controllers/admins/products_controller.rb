@@ -40,7 +40,7 @@ class Admins::ProductsController < Admins::ApplicationController
   private
 
   def product_params
-    params.require(:product).permit %i[name price image content display]
+    params.require(:product).permit %i[name price image content display stock seller_id]
   end
 
   def set_product
