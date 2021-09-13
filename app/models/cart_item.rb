@@ -2,7 +2,7 @@ class CartItem < ApplicationRecord
   belongs_to :user
   belongs_to :product
   validates :amount, presence: true,
-                      numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: ->(cart_item) {cart_item.product.stock} }
+                     numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: ->(cart_item) { cart_item.product.stock } }
 
   def save_and_update_product_stock
     ApplicationRecord.transaction do

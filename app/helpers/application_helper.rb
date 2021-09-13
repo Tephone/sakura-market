@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def sellers_option
-    Seller.default_order.map { |seller| [seller.name, seller.id]}
+    Seller.default_order.map { |seller| [seller.name, seller.id] }
   end
 
   def order_total_price(cart_items_price, send_fee, cod_charge)
