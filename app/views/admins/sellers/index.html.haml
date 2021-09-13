@@ -1,0 +1,8 @@
+%h2 業者一覧
+- @sellers.each do |seller|
+  %p
+    = seller.email
+    = link_to '詳細', admins_seller_path(seller)
+    = link_to '削除', admins_seller_path(seller), method: :delete
+%p= link_to '業者を登録する', new_admins_seller_path
+%p= paginate @sellers
