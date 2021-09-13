@@ -1,4 +1,4 @@
-%h2= t('.sign_in')
+%h2= '業者' + t('.sign_in')
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
     = f.label :email

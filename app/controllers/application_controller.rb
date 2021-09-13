@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
   def authenticate_any!
     if user_signed_in?
       authenticate_user!
-    else
+    elsif admin_signed_in?
       authenticate_admin!
+    elsif seller_signed_in?
+      authenticate_seller!
     end
   end
 end

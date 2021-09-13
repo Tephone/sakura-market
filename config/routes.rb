@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :coupons
     resources :sellers
   end
+  namespace :sellers do
+    resources :products
+  end
   namespace :users do
     resource :mypage, only: %i[show]
     resources :products, only: %i[index show]

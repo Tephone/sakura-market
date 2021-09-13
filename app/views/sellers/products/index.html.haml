@@ -1,0 +1,8 @@
+%h2 登録済商品一覧
+- @products.each do |product|
+  %p
+    = product.name
+    = link_to '詳細', sellers_product_path(product)
+    = link_to '削除', sellers_product_path(product), method: :delete
+%p= link_to '商品を登録する', new_sellers_product_path
+= paginate @products

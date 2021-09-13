@@ -9,7 +9,7 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    - if !admin_signed_in? && !user_signed_in?
+    - if !admin_signed_in? && !user_signed_in? && !seller_signed_in?
       = link_to 'ログイン(管理者)', new_admin_session_path
       = link_to 'ログイン(業者)', new_seller_session_path
       = link_to 'ログイン(ユーザー)', new_user_session_path
@@ -22,6 +22,7 @@
       = link_to 'ログアウト(管理者)', destroy_admin_session_path, method: :delete
 
     - if seller_signed_in?
+      = link_to '商品一覧', sellers_products_path
       = link_to 'ログアウト(業者)', destroy_seller_session_path, method: :delete
 
     - if user_signed_in?
