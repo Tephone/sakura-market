@@ -10,10 +10,12 @@ Rails.application.routes.draw do
     resources :products
     resources :coupons
     resources :sellers
+    resources :orders, only: %i[index show edit update]
   end
   namespace :sellers do
     resources :sellers, only: %i[show edit update]
     resources :products
+    resources :orders, only: %i[index show edit update]
   end
   namespace :users do
     resource :mypage, only: %i[show]
