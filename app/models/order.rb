@@ -40,19 +40,19 @@ class Order < ApplicationRecord
   def statuses_option_to_seller
     if self.status == 'ready_to_ship' || self.status == 'shipped'
       status_hash = Order.statuses.except('cancel')
-      status_hash.map{ |k, v| [ApplicationController.helpers.i18n_status(k), v]}
+      status_hash.map { |k, v| [ApplicationController.helpers.i18n_status(k), v] }
     else
-      Order.statuses.map{ |k, v| [ApplicationController.helpers.i18n_status(k), v]}
+      Order.statuses.map { |k, v| [ApplicationController.helpers.i18n_status(k), v] }
     end
   end
 
   def statuses_option_to_admin
     if self.status == 'ready_to_ship' || self.status == 'shipped'
       status_hash = Order.statuses.slice('ordered')
-      status_hash.map{ |k, v| [ApplicationController.helpers.i18n_status(k), v]}
+      status_hash.map { |k, v| [ApplicationController.helpers.i18n_status(k), v] }
     else
       status_hash = Order.statuses.slice('ordered', 'cancel')
-      status_hash.map{ |k, v| [i18n_status(k), v]}
+      status_hash.map { |k, v| [i18n_status(k), v] }
     end
   end
 end

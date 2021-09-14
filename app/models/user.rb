@@ -26,7 +26,7 @@ class User < ApplicationRecord
   def send_fee
     cart_items_count = self.cart_items.count
     cart_item_seller = self.products.first.seller
-    cart_item_seller.send_fee_per_box * (cart_items_count.to_f / cart_item_seller.capacity_of_box ).ceil
+    cart_item_seller.send_fee_per_box * (cart_items_count.to_f / cart_item_seller.capacity_of_box).ceil
   end
 
   def cod_charge
