@@ -1,8 +1,10 @@
 %h2 カート追加済み商品一覧
+%p ※カート内のアイテムは同一業者で揃えてください
 - @cart_items.each do |cart_item|
   %p
     = cart_item.product.name
     #{cart_item.amount}個
+    #{cart_item.product.seller.name}
     計#{cart_item.product.price * cart_item.amount}円
     = link_to '詳細', users_cart_item_path(cart_item)
     = link_to '削除', users_cart_item_path(cart_item), method: :delete

@@ -1,7 +1,7 @@
 %h2 商品一覧
 - @products.each do |product|
   %p
-    = product.name
+    #{product.name} / #{product.seller.name}
     = link_to '詳細', users_product_path(product)
 
 = paginate @products

@@ -1,0 +1,19 @@
+%h2 業者編集画面
+= form_with(model: @seller, url: sellers_seller_path, method: :put) do |f|
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name, autofocus: true
+  .field
+    = f.label :email
+    %br
+    = f.email_field :email
+  .field
+    = f.label :send_fee_per_box
+    %br
+    = f.number_field :send_fee_per_box
+  .field
+    = f.label :capacity_of_box
+    %br
+    = f.number_field :capacity_of_box
+  %p= f.submit

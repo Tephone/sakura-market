@@ -1,0 +1,6 @@
+%h2= @seller.name
+%p= @seller.email
+%p 送料/箱: #{@seller.send_fee_per_box}
+%p 上限アイテム数/箱: #{@seller.capacity_of_box}
+
+%p= link_to '編集', edit_sellers_seller_path

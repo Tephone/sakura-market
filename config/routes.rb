@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :sellers
   end
   namespace :sellers do
+    resources :sellers, only: %i[show edit update]
     resources :products
   end
   namespace :users do

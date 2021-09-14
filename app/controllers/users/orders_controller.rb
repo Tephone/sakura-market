@@ -5,6 +5,9 @@ class Users::OrdersController < Users::ApplicationController
 
   def new
     @order = current_user.orders.new
+    unless current_user.same_cart_item_seller?
+      redirect_to users_cart_items_path, alert: '複数業者の商品入っています'
+    end
   end
 
   def create
