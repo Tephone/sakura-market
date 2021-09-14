@@ -5,6 +5,10 @@ module ApplicationHelper
     }
   end
 
+  def sellers_option
+    Seller.default_order.map { |seller| [seller.name, seller.id] }
+  end
+
   def order_total_price(cart_items_price, send_fee, cod_charge)
     "合計金額: #{((send_fee + cod_charge + cart_items_price).* 1.1).to_i}円
     ( 商品合計: #{cart_items_price}円, 送料: #{send_fee}円, 代引き手数料: #{cod_charge}円 + 消費税 )"

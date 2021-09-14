@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :sellers, controllers: { sessions: 'sellers/sessions' }
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   mount LetterOpenerWeb::Engine, at: '/inbox' if Rails.env.development?
@@ -8,6 +9,10 @@ Rails.application.routes.draw do
     resources :users, only: %i[index show edit update destroy]
     resources :products
     resources :coupons
+    resources :sellers
+  end
+  namespace :sellers do
+    resources :products
   end
   namespace :users do
     resource :mypage, only: %i[show]
