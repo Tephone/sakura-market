@@ -18,11 +18,14 @@
       = link_to '商品一覧', admins_products_path
       = link_to 'ユーザー一覧', admins_users_path
       = link_to '業者一覧', admins_sellers_path
+      = link_to '注文一覧', admins_orders_path
       = link_to 'クーポン一覧', admins_coupons_path
       = link_to 'ログアウト(管理者)', destroy_admin_session_path, method: :delete
 
     - if seller_signed_in?
       = link_to '商品一覧', sellers_products_path
+      = link_to '受注リスト', sellers_orders_path
+      = link_to 'マイページ', sellers_seller_path(current_seller)
       = link_to 'ログアウト(業者)', destroy_seller_session_path, method: :delete
 
     - if user_signed_in?

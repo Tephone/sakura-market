@@ -1,0 +1,4 @@
+%h2 ステータス変更画面
+= form_with(model: @order, url: admins_order_path, method: :put) do |f|
+  = f.select :status, @order.statuses_option_to_admin
+  = f.submit '変更'

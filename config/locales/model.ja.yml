@@ -22,3 +22,5 @@ ja:
         point: ポイント数
       seller:
         name: 名前
+        send_fee_per_box: 送料(一箱あたり)
+        capacity_of_box: 上限アイテムの数(一箱あたり)

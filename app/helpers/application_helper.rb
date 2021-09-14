@@ -42,4 +42,8 @@ module ApplicationHelper
       "#{(coupon.get_coupons.count / User.count.to_f * 100).to_i}%"
     end
   end
+
+  def i18n_status(status)
+    t("status.#{status}")
+  end
 end

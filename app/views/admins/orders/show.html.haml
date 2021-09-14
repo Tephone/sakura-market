@@ -1,0 +1,12 @@
+%h2 詳細
+%p お届け予定日: #{l @order.delivery_date}
+%p お届け予定時間: #{@order.delivery_time.start_time}時-#{@order.delivery_time.end_time}時
+%p
+  ステータス: #{i18n_status(@order.status)}
+  = link_to '変更', edit_admins_order_path
+%p --内訳--
+- @order.order_products.each do |order_product|
+  %p
+    = order_product.product.name
+    #{order_product.amount}個
+    = change_JPY(order_product.product.price * order_product.amount)

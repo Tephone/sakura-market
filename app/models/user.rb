@@ -6,6 +6,7 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
   has_many :diaries, dependent: :destroy
   has_many :cart_items, dependent: :destroy
+  has_many :products, through: :cart_items, source: :product
   has_many :orders, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -24,7 +25,8 @@ class User < ApplicationRecord
 
   def send_fee
     cart_items_count = self.cart_items.count
-    600 * (cart_items_count.to_f / 5).ceil
+    cart_item_seller = self.products.first.seller
+    cart_item_seller.send_fee_per_box * (cart_items_count.to_f / cart_item_seller.capacity_of_box).ceil
   end
 
   def cod_charge
@@ -38,6 +40,10 @@ class User < ApplicationRecord
     elsif cart_items_price >= 100000
       1000
     end
+  end
+
+  def same_cart_item_seller?
+    self.products.select(:seller_id).distinct.count == 1
   end
 
   def remaining_point

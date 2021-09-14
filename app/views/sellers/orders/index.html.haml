@@ -1,0 +1,6 @@
+%h2 受注リスト
+- @orders.each do |order|
+  %p
+    = l order.delivery_date
+    = link_to '詳細', sellers_order_path(order)
+= paginate @orders

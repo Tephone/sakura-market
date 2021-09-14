@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
+  enum status: { ordered: 0, ready_to_ship: 1, shipped: 2, cancel: 3 }
   belongs_to :delivery_time
   belongs_to :user
+  belongs_to :seller
   has_many :order_products, dependent: :destroy
   validates :delivery_date, presence: true
   validate :invalid_holiday
@@ -32,6 +34,25 @@ class Order < ApplicationRecord
     dates = (Date.current.since(3.days).to_date..ApplicationController.helpers.max_delivery_date.to_date).to_a
     unless dates.include?(self.delivery_date)
       errors.add(:delivery_date, 'は3営業日（営業日: 月-金）から14営業日までの期間で選択してください')
+    end
+  end
+
+  def statuses_option_to_seller
+    if self.status == 'ready_to_ship' || self.status == 'shipped'
+      status_hash = Order.statuses.except('cancel')
+      status_hash.map { |k, v| [ApplicationController.helpers.i18n_status(k), v] }
+    else
+      Order.statuses.map { |k, v| [ApplicationController.helpers.i18n_status(k), v] }
+    end
+  end
+
+  def statuses_option_to_admin
+    if self.status == 'ready_to_ship' || self.status == 'shipped'
+      status_hash = Order.statuses.slice('ordered')
+      status_hash.map { |k, v| [ApplicationController.helpers.i18n_status(k), v] }
+    else
+      status_hash = Order.statuses.slice('ordered', 'cancel')
+      status_hash.map { |k, v| [i18n_status(k), v] }
     end
   end
 end
